@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="content_container">
+{% if report_list %}
+    {% for report in report_list %}
+        <div id="header_lower">  
+            <div id="header_content_boxline">
+                <a href="report/{{ report.id }}/">{{ report.title }}</a> 
+              <div id="header_content_boxcontent">{{ report.gen_time }}</div>
+            </div> 
+          </div>
+    {% endfor %}
+{% else %}
+    <p>No reports are available.</p>
+{% endif %}
+</div>
+
+{% endblock content %}

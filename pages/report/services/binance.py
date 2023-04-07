@@ -1,4 +1,4 @@
-from ...tools import http_request
+from ..tools import http_request
 
 
 class Binance:
@@ -26,12 +26,11 @@ class Binance:
 
         # Request ticker data from Binance
         data = http_request.get(url=full_url, params=params)
-
         # Check if requests status code is 200 and return price field
-        if data['status_code'] == 200:
+        if data['status'] == 200:
             return data['request'].json()['price']
         else:
             # If status code is not 200 return error string with error code and message
-            return f"<{data['status_code']}> {data['msg']}"
+            return f"<{data['status']}> {data['msg']}"
 
     

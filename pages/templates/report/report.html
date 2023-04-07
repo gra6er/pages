@@ -6,12 +6,12 @@
 
 <div id="content_container">
 <h2>{{ report.title }}</h2>
-{% if block_list %}
-    {% for block in block_list %}
+{% if block_calc_list %}
+    {% for block_calc in block_calc_list %}
         <div id="header_lower">  
             <div id="header_content_boxline">
-                {{ block.title }}
-              <div id="header_content_boxcontent">{{ block.text }}</div>
+                {{ block_calc.block.title }}
+              <div id="header_content_boxcontent">{{ block_calc.block.text }}</div>
             </div> 
           </div>
     {% endfor %}

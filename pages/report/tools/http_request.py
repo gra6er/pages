@@ -3,7 +3,7 @@ import requests
 
 def get(url, params=None):
     try:
-        req = requests.get(url=url, params=params)
+        res = requests.get(url=url, params=params)
         exc = None
         msg = "OK"
     except requests.exceptions.HTTPError as http_exc:
@@ -20,8 +20,8 @@ def get(url, params=None):
         exc = exc
     
     return {
-        'status': req.status_code, 
-        'request': req,
+        'status': res.status_code,
+        'response': res.json(),
         'msg': msg,
         'exception': exc
     }

@@ -7,3 +7,5 @@ media
 settings.py
 **/.DS_Store
 **/.idea
+htmlcov
+.coverage

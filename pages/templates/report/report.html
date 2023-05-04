@@ -8,12 +8,26 @@
 <h2>{{ report.title }}</h2>
 {% if block_calc_list %}
     {% for block_calc in block_calc_list %}
-        <div id="header_lower">  
-            <div id="header_content_boxline">
-                {{ block_calc.block.title }}
-              <div id="header_content_boxcontent">{{ block_calc.block.text }}</div>
-            </div> 
-          </div>
+    <section data-bs-version="5.1" class="features16 cid-tCxXflcaUp" id="features17-8">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-4">
+                        <div class="image-wrapper">
+                            <img src="/static/assets/images/mbr-1.jpg" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg">
+                        <div class="text-wrapper">
+                            <h6 class="card-title mbr-fonts-style display-5">{{ block_calc.block.title }}</h6>
+                            <p class="mbr-text mbr-fonts-style mb-4 display-5">{{ block_calc.block.text }}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     {% endfor %}
 {% else %}
     <p>Report is empty.</p>

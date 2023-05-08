@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Report, Block
-from .services.block_calculations import BlockCalculation
+from .services.block_processor import BlockProcessor
 
 
 def home(request):
@@ -12,11 +12,8 @@ def home(request):
 def report_detail(request, report_id):
     block_list = Block.objects.filter(report__id=report_id)
 
-    block_calc_list = [BlockCalculation(block) for block in block_list]
-
-    for block_calc in block_calc_list:
-        block_calc.block.text = str(block_calc.calculation.data)
+    block_processor_list = [BlockProcessor(block) for block in block_list]
 
     report = Report.objects.get(id=report_id)
-    context = dict(block_calc_list=block_calc_list, report=report)
+    context = dict(block_processor_list=block_processor_list, report=report)
     return render(request, 'report/report.html', context)

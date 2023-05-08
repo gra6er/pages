@@ -12,7 +12,7 @@ class BinanceTest(TestCase):
 
     @patch.object(binance, 'http_request')
     def test_get_ticker_price(self, mock_http_request):
-        response = {'symbol': 'BTCUSDT', 'price': '27902.91000000'}
+        response = {'symbol': 'BTCUSDT', 'price': '27902.91'}
         data = {
             'status': 200,
             'response': response,
@@ -22,4 +22,4 @@ class BinanceTest(TestCase):
 
         mock_http_request.get.return_value = data
         b = binance.Binance()
-        self.assertEqual(b.get_ticker_price("BTCUSDT"), '27902.91000000')
+        self.assertEqual(b.get_ticker_price("BTCUSDT"), 27902.91)

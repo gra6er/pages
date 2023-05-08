@@ -10,17 +10,26 @@ class Report(models.Model):
 
 
 class Block(models.Model):
-    TYPE_CRYPTO_TICKER = 'CryptoTicker'
-    TYPE_PLAIN_TEXT = 'PlainText'
-    TYPE_CHOICES = (
-        (TYPE_CRYPTO_TICKER, 'CryptoTicker'),
-        (TYPE_PLAIN_TEXT, 'PlainText'),
+    CALC_TYPE_CRYPTO_TICKER = 'CryptoTicker'
+    CALC_TYPE_PLAIN_TEXT = 'PlainText'
+    CALC_TYPE_CHOICES = (
+        (CALC_TYPE_CRYPTO_TICKER, 'CryptoTicker'),
+        (CALC_TYPE_PLAIN_TEXT, 'PlainText'),
+    )
+
+    VIEW_TYPE_VALUE_LOGO = 'ValueLogoView'
+    VIEW_TYPE_PLAIN_TEXT = 'PlainTextView'
+
+    VIEW_TYPE_CHOICES = (
+        (VIEW_TYPE_VALUE_LOGO, 'ValueLogoView'),
+        (VIEW_TYPE_PLAIN_TEXT, 'PlainTextView'),
     )
 
     title = models.CharField(max_length=200)
     text = models.TextField()
     report = models.ForeignKey(Report, on_delete=models.CASCADE)
-    calc_type = models.CharField(max_length=200, choices=TYPE_CHOICES)
+    calc_type = models.CharField(max_length=200, choices=CALC_TYPE_CHOICES)
+    view_type = models.CharField(max_length=200, choices=VIEW_TYPE_CHOICES)
     params = models.JSONField()
 
     def __str__(self):

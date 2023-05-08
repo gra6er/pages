@@ -10,6 +10,7 @@ class Binance:
         Function to GET ticker (ex. BTCUSDT) price from Binance
         """
         # TODO add logging
+        # Refactor this ?
         ticker_str = self.check_ticker(ticker)
         if ticker_str == "UnicodeDecodeError":
             return "UnicodeDecodeError for ticker"
@@ -25,7 +26,7 @@ class Binance:
         data = http_request.get(url=full_url, params=params)
         # Check if requests status code is 200 and return price field
         if data['status'] == 200:
-            return data['response']['price']
+            return float(data['response']['price'])
         else:
             # If status code is not 200 return error string with error code and message
             return f"<{data['status']}> {data['msg']}"

@@ -15,7 +15,8 @@ class ViewsTest(TestCase):
             text='Some text',
             report=rp1,
             calc_type='PlainText',
-            params='{"text": "TestText"}'
+            view_type='PlainTextView',
+            params={"text": "TestText"}
         )
 
     def test_root_url_resolves_to_home_page(self):

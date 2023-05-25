@@ -37,16 +37,3 @@ class PlainText(Calc):
     def calc(self):
         return self.params['text']
 
-
-def get_calculation_by_block_type(block):
-    try:
-        calc_class_name = block.calc_type
-        calc_class = getattr(sys.modules[__name__], calc_class_name)
-        # TODO check this type cast
-        calc_params = str(block.params).replace("'", "\"")
-        calc = calc_class(calc_params)
-        return calc
-    except Exception as ex:
-        print(ex)
-        param = '{"text": "Error creating calculation"}'
-        return PlainText(param)

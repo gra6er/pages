@@ -20,12 +20,17 @@ class BlockProcessorTest(TestCase):
         )
 
     @patch.object(block_calc.CryptoTicker, 'calc')
-    def test_block_processor_get_calculation(self, mock_calc):
+    def test_block_processor(self, mock_calc):
         block = Block.objects.get(id=1)
-        exp_value = 15000.00
-        mock_calc.return_value = exp_value
+        block_calc_exp_data = 15000.00
+        mock_calc.return_value = block_calc_exp_data
+        block_view_exp_context = {
+            "data": str(block_calc_exp_data),
+            "logo": "/static/views/ValueLogoView/logo/bitcoin-btc-logo.png"
+        }
 
         bp = BlockProcessor(block)
-
-        self.assertEqual(bp.calculation.data, exp_value)
+        # TODO add more asserts
+        self.assertEqual(bp.calculation.data, block_calc_exp_data)
+        self.assertEqual(bp.view.context, block_view_exp_context)
 
